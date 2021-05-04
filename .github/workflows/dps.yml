@@ -1,4 +1,4 @@
-name: go mod tidy for Dependabot
+name: go mod tidy for Dependabotx
 
 on:
   pull_request:
@@ -15,10 +15,6 @@ jobs:
     if: contains(github.head_ref, 'dependabot/go_modules/') && github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
