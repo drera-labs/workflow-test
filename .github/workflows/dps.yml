@@ -1,4 +1,4 @@
-name: go mod tidy for Dependabotx
+name: go mod tidy for Dependabot
 
 on:
   pull_request:
