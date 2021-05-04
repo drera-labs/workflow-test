@@ -6,7 +6,7 @@ on:
 
 jobs:
   go-mod-tidy:
-    if: contains(github.head_ref, 'dependabot/go_modules/') && github.actor == 'dependabot'
+    if: contains(github.head_ref, 'dependabot/go_modules/') && github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
