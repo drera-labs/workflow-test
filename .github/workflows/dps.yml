@@ -5,8 +5,15 @@ on:
     branches: [master]
 
 jobs:
+  nada:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
   tidyfy:
-    if: "contains(github.head_ref, 'refs/head/dependabot/')"
+    if: "contains(github.head_ref, 'dependabot/go_modules/')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +29,5 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Apply formatting changes
           commit_options: --amend
           branch: ${{ github.head_ref }}
