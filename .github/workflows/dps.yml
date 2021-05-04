@@ -26,10 +26,16 @@ jobs:
         run: |
           cd cli
           go mod tidy
+      - uses: jungwinter/split@v1
+        id: event_title_split
+        with:
+          msg: '${{ github.event.title }}'
+          separator: '/'
+          maxsplit: 2
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: ${{ github.head_ref }}
           file_pattern: '**/go.mod **/go.sum'
-          commit_message: "go mod tidy"
+          commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
           commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
