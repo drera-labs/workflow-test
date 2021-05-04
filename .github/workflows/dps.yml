@@ -30,7 +30,7 @@ jobs:
         id: event_title_split
         with:
           msg: '${{ github.event.pull_request.title }}'
-          separator: '/'
+          separator: /
           maxsplit: 2
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
