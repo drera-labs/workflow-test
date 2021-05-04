@@ -3,10 +3,13 @@ name: go mod tidy for Dependabot
 on:
   pull_request:
     branches: [master]
+    paths:
+      - '**/go.mod'
+      - '**/go.sum'
 
 jobs:
   go-mod-tidy:
-    if: contains(github.head_ref, 'dependabot/go_modules/') && github.actor == 'dependabot[bot]'
+    if: contains(github.head_ref, 'dependabot/go_modules/') && github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
