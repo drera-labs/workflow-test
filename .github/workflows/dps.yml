@@ -1,19 +1,12 @@
-name: Fix Deps
+name: go mod tidy for Dependabot
 
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  nada:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-  tidyfy:
-    if: "contains(github.head_ref, 'dependabot/go_modules/')"
+  go-mod-tidy:
+    if: "contains(github.head_ref, 'dependabot/go_modules/')" && github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,3 +24,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: ${{ github.head_ref }}
+          commit_message: "go mod tidy"
+          commit_author: "Luis Gustavo S. Barreto <gustavosbarreto@gmail.com>"
