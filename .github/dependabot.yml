@@ -2,11 +2,11 @@ version: 2
 
 updates:
 - package-ecosystem: gomod
-  directory: "/api"
+  directory: "/api2"
   schedule:
     interval: weekly
   commit-message:
-    prefix: "api"
+    prefix: "api2"
   ignore:
       - dependency-name: "github.com/gustavosbarreto/workflow-test"
 - package-ecosystem: gomod
