@@ -29,7 +29,7 @@ jobs:
       - uses: jungwinter/split@v1
         id: event_title_split
         with:
-          msg: '${{ github.event.title }}'
+          msg: '${{ github.event.pull_request.title }}'
           separator: '/'
           maxsplit: 2
       - name: Commit changes
