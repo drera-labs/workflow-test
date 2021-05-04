@@ -7,10 +7,6 @@ on:
       - '**/go.mod'
       - '**/go.sum'
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   go-mod-tidy:
     if: contains(github.head_ref, 'dependabot/go_modules/') && github.event.pull_request.user.login == 'dependabot[bot]'
