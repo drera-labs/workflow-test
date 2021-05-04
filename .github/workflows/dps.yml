@@ -26,6 +26,7 @@ jobs:
         run: |
           cd cli
           go mod tidy
+          git diff
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
