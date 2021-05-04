@@ -1,6 +1,6 @@
 package main
 
-import "github.com/gustavosbarreto/workflow-test/api/pkg/api2"
+import "github.com/gustavosbarreto/workflow-test/api/pkg/api"
 
 func main() {
 	api.Log()
