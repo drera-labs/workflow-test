@@ -1,11 +1,14 @@
 name: go mod tidy for Dependabot
 
 on:
-  pull_request_target:
+  pull_request:
     branches: [master]
     paths:
       - '**/go.mod'
       - '**/go.sum'
+
+permissions:
+  content: write
 
 jobs:
   go-mod-tidy:
