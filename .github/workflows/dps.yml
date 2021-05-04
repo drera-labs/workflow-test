@@ -4,7 +4,8 @@ on:
   pull_request:
     branches: [master]
     paths:
-      - '**/go.mod'
+      - '*/go.mod'
+      - '*/go.sum'
 
 jobs:
   go-mod-tidy:
