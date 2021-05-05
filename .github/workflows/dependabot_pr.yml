@@ -29,4 +29,5 @@ jobs:
         with:
           name: diff
           path: /tmp/diff
+          retention-days: 1
           #'${{ github.event.pull_request.title }}'
