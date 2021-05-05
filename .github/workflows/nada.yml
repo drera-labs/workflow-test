@@ -14,8 +14,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/download-artifact@v2
+      - uses: dawidd6/action-download-artifact@v2
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: dependabot_pr.yml
+          run_id: ${{ github.event.id }}
           name: diff
       - name: Apply diff
         run: cat diff | patch -p1
