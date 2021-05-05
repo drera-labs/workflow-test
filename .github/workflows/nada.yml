@@ -1,0 +1,27 @@
+on:
+  workflow_run:
+    workflows: ["dependabot_pr_tidify_gomod"]
+    types: [completed]
+
+jobs:
+  commit-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v4
+        id: set-result
+        with:
+          script: |
+            var fs = require('fs');
+
+            
+          result-encoding: string
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: ${{ github.head_ref }}
+          file_pattern: '**/go.mod **/go.sum'
+          commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
+          commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"

@@ -1,7 +1,7 @@
-name: go mod tidy for Dependabot
+name: dependabot_pr_tidify_gomod
 
 on:
-  pull_request_target:
+  pull_request:
     branches: [master]
     paths:
       - '**/go.mod'
@@ -22,16 +22,20 @@ jobs:
         run: |
           cd cli
           go mod tidy
-      - uses: jungwinter/split@v1
-        id: event_title_split
+      - name: Create diff artifact
+        run: |
+          git diff > /tmp/diff
+      - name: Dump PR context
+        env:
+          PR_CONTEXT: ${{ toJSON(github.event.pull_request) }}
+        run: |
+          echo "$PR_CONTEXT" > /tmp/pr_context
+      - uses: actions/upload-artifact@v2
         with:
-          msg: '${{ github.event.pull_request.title }}'
-          seperator: ':'
-          maxsplit: 2
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+          name: diff
+          path: /tmp/diff
+      - uses: actions/upload-artifact@v2
         with:
-          branch: ${{ github.head_ref }}
-          file_pattern: '**/go.mod **/go.sum'
-          commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
-          commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
+          name: pr_context
+          path: /tmp/pr_context
+          #'${{ github.event.pull_request.title }}'
