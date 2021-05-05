@@ -1,3 +1,5 @@
+name: nada
+
 on:
   workflow_run:
     workflows: ["dependabot_pr_tidify_gomod"]
