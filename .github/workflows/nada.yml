@@ -22,6 +22,10 @@ jobs:
           name: diff
       - name: Apply diff
         run: cat diff | patch -p1
+      - name: Diff
+        run: |
+          git diff
+          git status
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
