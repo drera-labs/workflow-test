@@ -4,7 +4,10 @@ on:
   workflow_run:
     workflows:
       - dependabot_pr
+    branches:
+      - main
     types:
+      - requested
       - completed
 
 jobs:
@@ -17,10 +20,3 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Apply diff
         run: cat diff | patch -p1
-#      - name: Commit changes
-#        uses: stefanzweifel/git-auto-commit-action@v4
-#        with:
-          #branch: ${{ github.head_ref }}
-          #file_pattern: '**/go.mod **/go.sum'
-          #commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
-          #commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
