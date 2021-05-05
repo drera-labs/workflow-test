@@ -1,4 +1,4 @@
-name: dependabot_pr_tidify_gomod
+name: dependabot_pr
 
 on:
   pull_request:
