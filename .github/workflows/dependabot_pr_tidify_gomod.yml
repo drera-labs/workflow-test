@@ -25,17 +25,8 @@ jobs:
       - name: Create diff artifact
         run: |
           git diff > /tmp/diff
-      - name: Dump PR context
-        env:
-          PR_CONTEXT: ${{ toJSON(github.event.pull_request) }}
-        run: |
-          echo "$PR_CONTEXT" > /tmp/pr_context
       - uses: actions/upload-artifact@v2
         with:
           name: diff
           path: /tmp/diff
-      - uses: actions/upload-artifact@v2
-        with:
-          name: pr_context
-          path: /tmp/pr_context
           #'${{ github.event.pull_request.title }}'
