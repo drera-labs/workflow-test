@@ -26,10 +26,10 @@ jobs:
         run: |
           git diff
           git status
-#      - name: Commit changes
-#        uses: stefanzweifel/git-auto-commit-action@v4
-        #with:
-          #branch: ${{ github.head_ref }}
-          #file_pattern: '**/go.mod **/go.sum'
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: ${{ github.event.pull_request.head.ref }}
+          file_pattern: '**/go.mod **/go.sum'
           #commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
-          #commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
+          commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
