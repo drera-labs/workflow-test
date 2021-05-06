@@ -1,4 +1,4 @@
-name: nada
+name: dependabot_pr_gomodtidify
 
 on:
   workflow_run:
@@ -22,18 +22,10 @@ jobs:
           name: diff
       - name: Apply diff
         run: cat diff | patch -p1
-      - name: Diff
-        run: |
-          git diff
-          git status
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: ${{ github.event.workflow_run.head_branch }}
           file_pattern: '**/go.mod **/go.sum'
-          #commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
+          commit_message: "gomod: tidify gomod files"
           commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
