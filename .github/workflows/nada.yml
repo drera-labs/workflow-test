@@ -33,7 +33,7 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: ${{ github.event.pull_request.head.sha }}
+          branch: ${{ github.event.workflow_run.head_branch }}
           file_pattern: '**/go.mod **/go.sum'
           #commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
           commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
