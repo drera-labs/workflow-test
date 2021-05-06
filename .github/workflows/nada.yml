@@ -26,10 +26,14 @@ jobs:
         run: |
           git diff
           git status
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: ${{ github.event.pull_request.head.ref }}
+          branch: ${{ github.event.pull_request.head.sha }}
           file_pattern: '**/go.mod **/go.sum'
           #commit_message: "cli: ${{ steps.event_title_split.outputs._1}}"
           commit_author: "ShellHub Actions Bot <github-actions-bot@shellhub.io>"
