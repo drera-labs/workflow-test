@@ -3,7 +3,7 @@ name: dependabot_pr_gomodtidify
 on:
   workflow_run:
     workflows:
-      - dependabot_pr
+      - dependabot_pra
     types:
       - completed
 
